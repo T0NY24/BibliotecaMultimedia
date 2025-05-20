@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Imágenes - OptiMedia</title>
+    <title>Galería de Vectores - OptiMedia</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -23,8 +23,9 @@
         .modal-content {
             margin: auto;
             display: block;
-            max-width: 90%;
-            max-height: 90%;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -50,13 +51,30 @@
             width: 100%;
             background: rgba(0,0,0,0.7);
         }
+
+        /* Estilos específicos para SVG */
+        .gallery-item .svg-container {
+            width: 100%;
+            height: 200px;
+            background: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <a href="../index.html" class="logo">
             <i class="fas fa-arrow-left"></i>
-            <span>Galería de Imágenes</span>
+            <span>Galería de Vectores SVG</span>
         </a>
         <div class="nav-menu">
             <i class="fas fa-search"></i>
@@ -68,89 +86,99 @@
         <!-- Filtros -->
         <div class="filters">
             <button class="filter-btn btn btn-primary active" data-filter="all">Todas</button>
-            <button class="filter-btn btn btn-secondary" data-filter="webp">WebP</button>
-            <button class="filter-btn btn btn-secondary" data-filter="avif">AVIF</button>
-            <button class="filter-btn btn btn-secondary" data-filter="jpg">JPG</button>
+            <button class="filter-btn btn btn-secondary" data-filter="iconos">Iconos</button>
+            <button class="filter-btn btn btn-secondary" data-filter="ilustraciones">Ilustraciones</button>
+            <button class="filter-btn btn btn-secondary" data-filter="logos">Logos</button>
         </div>
 
-        <!-- Galería de imágenes -->
+        <!-- Galería de vectores -->
         <div class="gallery-grid">
-            <!-- Imagen 1 -->
-            <div class="gallery-item" data-category="webp">
-                <img src="../images/ImagenesOptimizadas/naturaleza.webp" alt="Paisaje montañoso" loading="lazy" class="gallery-img">
+            <!-- Vector 1 -->
+            <div class="gallery-item" data-category="iconos">
+                <div class="svg-container">
+                    <img src="../images/VectoresOptimizados/1.svg" alt="Icono de usuario" class="vector-img">
+                </div>
                 <div class="image-meta">
-                    <span class="format-badge">WebP</span>
-                    <span>232KB · 4000x6000</span>
+                    <span class="format-badge">SVG</span>
+                    <span>4.6KB</span>
                 </div>
                 <div class="image-desc">
-                    <h3>Paisaje montañoso</h3>
-                    <p>Optimizado con compresión lossy al 80% de calidad. Reducción del 65% frente al JPG original.</p>
+                    <h3>Icono de usuario</h3>
+                    <p>Icono vectorial optimizado para interfaz de usuario.</p>
                 </div>
             </div>
 
-            <!-- Imagen 2 -->
-            <div class="gallery-item" data-category="avif">
-                <img src="../images/ImagenesOptimizadas/mono.avif" alt="Mono AVIF" loading="lazy" class="gallery-img">
+            <!-- Vector 2 -->
+            <div class="gallery-item" data-category="ilustraciones">
+                <div class="svg-container">
+                    <img src="../images/VectoresOptimizados/2.svg" alt="Ilustración abstracta" class="vector-img">
+                </div>
                 <div class="image-meta">
-                    <span class="format-badge">AVIF</span>
-                    <span>122.6KB · 5473x3649</span>
+                    <span class="format-badge">SVG</span>
+                    <span>4.77 KB</span>
                 </div>
                 <div class="image-desc">
-                    <h3>Mono AVIF</h3>
-                    <p>Formato AVIF con compresión avanzada. Mantiene excelente calidad en tonos de piel.</p>
+                    <h3>Diseño abstracto</h3>
+                    <p>Composición vectorial con gradientes y formas complejas.</p>
                 </div>
             </div>
 
-            <!-- Imagen 3 -->
-            <div class="gallery-item" data-category="webp">
-                <img src="../images/ImagenesOptimizadas/capucchino.webp" alt="Capuchino WebP" loading="lazy" class="gallery-img">
+            <!-- Vector 3 -->
+            <div class="gallery-item" data-category="logos">
+                <div class="svg-container">
+                    <img src="../images/VectoresOptimizados/3.svg" alt="Logo corporativo" class="vector-img">
+                </div>
                 <div class="image-meta">
-                    <span class="format-badge">WebP</span>
-                    <span>237KB · 3749x4944</span>
+                    <span class="format-badge">SVG</span>
+                    <span>83 KB</span>
                 </div>
                 <div class="image-desc">
-                    <h3>Capuchino WebP</h3>
-                    <p>Foto optimizada en WebP para no perder muchos detalles.</p>
+                    <h3>Logo empresarial</h3>
+                    <p>Logotipo vectorial con texto convertido a curvas.</p>
                 </div>
             </div>
 
-            <!-- Imagen 4 -->
-            <div class="gallery-item" data-category="webp">
-                <img src="../images/ImagenesOptimizadas/monoSentado.webp" alt="Mono sentado WebP" loading="lazy" class="gallery-img">
+            <!-- Vector 4 -->
+            <div class="gallery-item" data-category="iconos">
+                <div class="svg-container">
+                    <img src="../images/VectoresOptimizados/4.svg" alt="Icono de configuración" class="vector-img">
+                </div>
                 <div class="image-meta">
-                    <span class="format-badge">WebP</span>
-                    <span>131KB · 3846x5769</span>
+                    <span class="format-badge">SVG</span>
+                    <span>59.6 KB</span>
                 </div>
                 <div class="image-desc">
-                    <h3>Mono sentado WebP</h3>
-                    <p>Transparencia alpha conservada con tamaño reducido en un 40% frente a PNG.</p>
+                    <h3>Icono de ajustes</h3>
+                    <p>Icono de engranaje optimizado para aplicaciones web.</p>
                 </div>
             </div>
 
-            <!-- Imagen 5 -->
-            <div class="gallery-item" data-category="jpg">
-                <img src="../images/ImagenesOptimizadas/MonoTriste.jpg" alt="Mono triste JPG" loading="lazy" class="gallery-img">
+            <!-- Vector 5 -->
+            <div class="gallery-item" data-category="ilustraciones">
+                <div class="svg-container">
+                    <img src="../images/VectoresOptimizados/5.svg" alt="Ilustración técnica" class="vector-img">
+                </div>
                 <div class="image-meta">
-                    <span class="format-badge">WebP</span>
-                    <span>227KB · 5184x3456</span>
+                    <span class="format-badge">SVG</span>
+                    <span>95.2 KB</span>
                 </div>
                 <div class="image-desc">
-                    <h3>Mono Triste </h3>
-                    <p>Daddy cuando se entero que perdio base de datos por segunda vez .</p>
+                    <h3>Diagrama técnico</h3>
+                    <p>Gráfico vectorial con múltiples elementos y capas.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal para imagen completa -->
-    <div id="imageModal" class="modal">
+    <!-- Modal para vector ampliado -->
+    <div id="vectorModal" class="modal">
         <span class="close">&times;</span>
-        <img class="modal-content" id="expandedImg">
-        <div class="image-info-modal" id="imageInfo"></div>
+        <img class="modal-content" id="expandedVector">
+        <div class="image-info-modal" id="vectorInfo"></div>
     </div>
 
     <script>
-        // Filtrado de imágenes
+        // Filtrado de vectores
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const galleryItems = document.querySelectorAll('.gallery-item');
@@ -164,7 +192,7 @@
                     
                     const filterValue = this.getAttribute('data-filter');
                     
-                    // Filtrar imágenes
+                    // Filtrar vectores
                     galleryItems.forEach(item => {
                         if (filterValue === 'all') {
                             item.style.display = 'block';
@@ -179,18 +207,21 @@
                 });
             });
 
-            // Modal para imagen ampliada
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById("expandedImg");
-            const captionText = document.getElementById("imageInfo");
+            // Modal para vector ampliado
+            const modal = document.getElementById('vectorModal');
+            const modalImg = document.getElementById("expandedVector");
+            const captionText = document.getElementById("vectorInfo");
             const closeBtn = document.getElementsByClassName("close")[0];
             
-            document.querySelectorAll('.gallery-img').forEach(img => {
+            document.querySelectorAll('.vector-img').forEach(img => {
                 img.addEventListener('click', function() {
                     modal.style.display = "block";
                     modalImg.src = this.src;
-                    captionText.innerHTML = this.alt + 
-                        '<br>' + this.closest('.gallery-item').querySelector('.image-meta').innerText;
+                    
+                    // Mostrar información
+                    const parentItem = this.closest('.gallery-item');
+                    captionText.innerHTML = parentItem.querySelector('h3').textContent + 
+                        '<br>' + parentItem.querySelector('.image-meta').innerText;
                 });
             });
             
