@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimización de Imágenes - OptiMedia</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fas fa-arrow-left"></i>
+            <span>Optimización de Imágenes</span>
+        </a>
+        <div class="nav-menu">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-info-circle"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Comparativa de Formatos</h1>
+        
+        <!-- Sección de comparación 1 -->
+        <div class="image-comparison">
+            <h2><i class="fas fa-camera"></i> JPEG vs WebP</h2>
+            <div class="image-pair">
+                <div class="image-card">
+                    <img src="../assets/images/foto-original.jpg" alt="Foto original JPG 250KB" loading="lazy">
+                    <div class="image-info">
+                        <h3>JPG Original</h3>
+                        <p>250KB · 1920x1080px</p>
+                        <p class="tech-detail">Calidad 90 · Sin optimizar</p>
+                    </div>
+                </div>
+                <div class="image-card optimized">
+                    <img src="../assets/images/foto-webp.webp" alt="Foto optimizada WebP 85KB" loading="lazy">
+                    <div class="image-info">
+                        <h3>WebP Optimizado</h3>
+                        <p>85KB · 1920x1080px</p>
+                        <p class="tech-detail">Calidad 80 · 66% más liviano</p>
+                    </div>
+                </div>
+            </div>
+            <div class="conclusion">
+                <p><strong>Resultado:</strong> El formato WebP ofrece una reducción del 66% en peso de archivo manteniendo una calidad visual similar.</p>
+            </div>
+        </div>
+
+        <!-- Sección de comparación 2 -->
+        <div class="image-comparison">
+            <h2><i class="fas fa-vector-square"></i> PNG vs SVG</h2>
+            <div class="image-pair">
+                <div class="image-card">
+                    <img src="../assets/images/logo-original.png" alt="Logo PNG 120KB" loading="lazy">
+                    <div class="image-info">
+                        <h3>PNG Original</h3>
+                        <p>120KB · 800x600px</p>
+                        <p class="tech-detail">24-bit · Sin comprimir</p>
+                    </div>
+                </div>
+                <div class="image-card optimized">
+                    <img src="../assets/images/logo-optimizado.svg" alt="Logo SVG 8KB" loading="lazy">
+                    <div class="image-info">
+                        <h3>SVG Optimizado</h3>
+                        <p>8KB · Escalable</p>
+                        <p class="tech-detail">Vectores · 93% más liviano</p>
+                    </div>
+                </div>
+            </div>
+            <div class="conclusion">
+                <p><strong>Resultado:</strong> Para gráficos y logos, SVG reduce el peso en un 93% y permite escalado infinito sin pérdida de calidad.</p>
+            </div>
+        </div>
+
+        <!-- Técnicas de optimización -->
+        <div class="optimization-techniques">
+            <h2><i class="fas fa-tools"></i> Técnicas Aplicadas</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <i class="fas fa-compress-arrows-alt"></i>
+                    <h3>Compresión</h3>
+                    <p>Reducción del tamaño de archivo sin pérdida perceptible de calidad.</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Conversión</h3>
+                    <p>Uso de formatos modernos como WebP que ofrecen mejor compresión.</p>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-vector-square"></i>
+                    <h3>Vectorización</h3>
+                    <p>Conversión de gráficos rasterizados a vectores cuando es posible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

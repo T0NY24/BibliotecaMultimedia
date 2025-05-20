@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medios Digitales Optimizados</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Nuestros estilos -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo animate__animated animate__fadeIn">
+            <i class="fas fa-file-image"></i>
+            <span>OptiMedia</span>
+        </div>
+        <div class="nav-menu">
+            <a href="pages/imagenes.html"><i class="fas fa-image"></i></a>
+            <a href="pages/vectores.html"><i class="fas fa-draw-polygon"></i></a>
+            <a href="pages/videos.html"><i class="fas fa-video"></i></a>
+            <i class="fas fa-search"></i>
+            <i class="fas fa-info-circle"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Categorías de formatos -->
+        <div class="categories animate__animated animate__fadeInUp">
+            <a href="pages/imagenes.html" class="category">
+                <i class="fas fa-image"></i>
+                <span>Imágenes</span>
+                <small>JPG/PNG</small>
+            </a>
+            <a href="pages/vectores.html" class="category">
+                <i class="fas fa-draw-polygon"></i>
+                <span>Vectores</span>
+                <small>SVG</small>
+            </a>
+            <a href="pages/videos.html" class="category">
+                <i class="fas fa-video"></i>
+                <span>Videos</span>
+                <small>MP4/WEBM</small>
+            </a>
+            <a href="pages/animaciones.html" class="category">
+                <i class="fas fa-film"></i>
+                <span>Animaciones</span>
+                <small>GIF/APNG</small>
+            </a>
+            <a href="pages/comparacion.html" class="category">
+                <i class="fas fa-balance-scale"></i>
+                <span>Comparación</span>
+                <small>Optimización</small>
+            </a>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="buttons animate__animated animate__fadeInUp animate__delay-1s">
+            <button class="btn btn-primary">Técnicas</button>
+            <button class="btn btn-secondary">Resultados</button>
+            <button class="btn btn-accent">Herramientas</button>
+        </div>
+
+        <!-- Contenido demostrativo -->
+        <div class="content-grid animate__animated animate__fadeInUp animate__delay-2s">
+            <div class="card">
+                <div class="card-img">
+                    <i class="fas fa-compress-alt"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Compresión de Imágenes</h3>
+                    <p class="card-text">Comparativa entre formatos JPG, PNG y WebP con diferentes niveles de compresión.</p>
+                    <a href="pages/imagenes.html" class="btn btn-primary">Ver análisis</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img">
+                    <i class="fas fa-vector-square"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Gráficos Vectoriales</h3>
+                    <p class="card-text">Ventajas del formato SVG sobre imágenes rasterizadas en diferentes escenarios.</p>
+                    <a href="pages/vectores.html" class="btn btn-secondary">Explorar</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img">
+                    <i class="fas fa-file-video"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Optimización de Video</h3>
+                    <p class="card-text">Técnicas para reducir peso manteniendo calidad en formatos MP4 y WebM.</p>
+                    <a href="pages/videos.html" class="btn btn-accent">Ver ejemplos</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Métricas de Rendimiento</h3>
+                    <p class="card-text">Impacto en tiempos de carga con diferentes técnicas de optimización.</p>
+                    <button class="btn btn-primary">Ver datos</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

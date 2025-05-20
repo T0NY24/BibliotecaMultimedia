@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Imágenes - OptiMedia</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .image-info-modal {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fas fa-arrow-left"></i>
+            <span>Galería de Imágenes</span>
+        </a>
+        <div class="nav-menu">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-sliders-h"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Filtros -->
+        <div class="filters">
+            <button class="filter-btn btn btn-primary active" data-filter="all">Todas</button>
+            <button class="filter-btn btn btn-secondary" data-filter="webp">WebP</button>
+            <button class="filter-btn btn btn-secondary" data-filter="avif">AVIF</button>
+            <button class="filter-btn btn btn-secondary" data-filter="jpg">JPG</button>
+        </div>
+
+        <!-- Galería de imágenes -->
+        <div class="gallery-grid">
+            <!-- Imagen 1 -->
+            <div class="gallery-item" data-category="webp">
+                <img src="../images/ImagenesOptimizadas/naturaleza.webp" alt="Paisaje montañoso" loading="lazy" class="gallery-img">
+                <div class="image-meta">
+                    <span class="format-badge">WebP</span>
+                    <span>232KB · 4000x6000</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Paisaje montañoso</h3>
+                    <p>Optimizado con compresión lossy al 80% de calidad. Reducción del 65% frente al JPG original.</p>
+                </div>
+            </div>
+
+            <!-- Imagen 2 -->
+            <div class="gallery-item" data-category="avif">
+                <img src="../images/ImagenesOptimizadas/mono.avif" alt="Mono AVIF" loading="lazy" class="gallery-img">
+                <div class="image-meta">
+                    <span class="format-badge">AVIF</span>
+                    <span>122.6KB · 5473x3649</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Mono AVIF</h3>
+                    <p>Formato AVIF con compresión avanzada. Mantiene excelente calidad en tonos de piel.</p>
+                </div>
+            </div>
+
+            <!-- Imagen 3 -->
+            <div class="gallery-item" data-category="webp">
+                <img src="../images/ImagenesOptimizadas/capucchino.webp" alt="Capuchino WebP" loading="lazy" class="gallery-img">
+                <div class="image-meta">
+                    <span class="format-badge">WebP</span>
+                    <span>237KB · 3749x4944</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Capuchino WebP</h3>
+                    <p>Foto optimizada en WebP para no perder muchos detalles.</p>
+                </div>
+            </div>
+
+            <!-- Imagen 4 -->
+            <div class="gallery-item" data-category="webp">
+                <img src="../images/ImagenesOptimizadas/monoSentado.webp" alt="Mono sentado WebP" loading="lazy" class="gallery-img">
+                <div class="image-meta">
+                    <span class="format-badge">WebP</span>
+                    <span>131KB · 3846x5769</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Mono sentado WebP</h3>
+                    <p>Transparencia alpha conservada con tamaño reducido en un 40% frente a PNG.</p>
+                </div>
+            </div>
+
+            <!-- Imagen 5 -->
+            <div class="gallery-item" data-category="jpg">
+                <img src="../images/ImagenesOptimizadas/MonoTriste.jpg" alt="Mono triste JPG" loading="lazy" class="gallery-img">
+                <div class="image-meta">
+                    <span class="format-badge">JPG</span>
+                    <span>227KB · 5184x3456</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Mono Triste JPG</h3>
+                    <p>Imagen en formato JPG con compresión estándar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para imagen completa -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="expandedImg">
+        <div class="image-info-modal" id="imageInfo"></div>
+    </div>
+
+    <script>
+        // Filtrado de imágenes
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filtrar imágenes
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            if (item.getAttribute('data-category') === filterValue) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Modal para imagen ampliada
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById("expandedImg");
+            const captionText = document.getElementById("imageInfo");
+            const closeBtn = document.getElementsByClassName("close")[0];
+            
+            document.querySelectorAll('.gallery-img').forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                    captionText.innerHTML = this.alt + 
+                        '<br>' + this.closest('.gallery-item').querySelector('.image-meta').innerText;
+                });
+            });
+            
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
