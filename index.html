@@ -3,116 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medios Digitales Optimizados</title>
+    <title>MonkeyMedia - Optimización Multimedia</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <style>
+        /* Estilos adicionales para el tema de monos */
+        
+        
+        .monkey-icon {
+            color: var(--accent);
+        }
+        
+        .banana-bg {
+            background-image: radial-gradient(circle, rgba(255,215,0,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
 </head>
-<body>
-    
+<body class="monkey-theme bananabg">
+    <!-- Barra de navegación -->
     <nav class="navbar">
         <div class="logo animate__animated animate__fadeIn">
-            <i class="fas fa-file-image"></i>
+            <i class="fas fa-monkey monkey-icon"></i>
             <span>MonkeyMedia</span>
         </div>
         <div class="nav-menu">
-            <a href="pages/imagenes.html"><i class="fas fa-image"></i></a>
-            <a href="pages/vectores.html"><i class="fas fa-draw-polygon"></i></a>
-            <a href="pages/videos.html"><i class="fas fa-video"></i></a>
-            <i class="fas fa-search"></i>
-            <i class="fas fa-info-circle"></i>
+            <a href="pages/imagenes.html" title="Imágenes"><i class="fas fa-camera-retro monkey-icon"></i></a>
+            <a href="pages/vectores.html" title="Vectores"><i class="fas fa-draw-polygon monkey-icon"></i></a>
+            <a href="pages/videos.html" title="Videos"><i class="fas fa-video monkey-icon"></i></a>
+            <a href="pages/comparacion.html" title="Comparación"><i class="fas fa-balance-scale-right monkey-icon"></i></a>
+            <i class="fas fa-search monkey-icon"></i>
         </div>
     </nav>
 
     <div class="container">
-        
+        <!-- Categorías -->
         <div class="categories animate__animated animate__fadeInUp">
             <a href="pages/imagenes.html" class="category">
-                <i class="fas fa-image"></i>
+                <i class="fas fa-camera-retro"></i>
                 <span>Imágenes</span>
-                <small>JPG/PNG</small>
+                <small>JPG/WebP</small>
             </a>
             <a href="pages/vectores.html" class="category">
-                <i class="fas fa-draw-polygon"></i>
+                <i class="fas fa-paint-brush"></i>
                 <span>Vectores</span>
                 <small>SVG</small>
             </a>
             <a href="pages/videos.html" class="category">
-                <i class="fas fa-video"></i>
+                <i class="fas fa-film"></i>
                 <span>Videos</span>
-                <small>MP4/WEBM</small>
+                <small>MP4/WebM</small>
             </a>
             <a href="pages/animaciones.html" class="category">
-                <i class="fas fa-film"></i>
+                <i class="fas fa-play-circle"></i>
                 <span>Animaciones</span>
-                <small>GIF/APNG</small>
+                <small>GIF/Lottie</small>
             </a>
             <a href="pages/comparacion.html" class="category">
-                <i class="fas fa-balance-scale"></i>
+                <i class="fas fa-chart-bar"></i>
                 <span>Comparación</span>
-                <small>Optimización</small>
+                <small>Resultados</small>
             </a>
         </div>
 
-        
+        <!-- Botones de acción -->
         <div class="buttons animate__animated animate__fadeInUp animate__delay-1s">
-            <button class="btn btn-primary">Técnicas</button>
-            <button class="btn btn-secondary">Resultados</button>
-            <button class="btn btn-accent">Herramientas</button>
+            <a href="pages/tecnicas.html" class="btn btn-primary">
+                <i class="fas fa-tools"></i> Técnicas
+            </a>
+            <a href="pages/resultados.html" class="btn btn-secondary">
+                <i class="fas fa-chart-line"></i> Resultados
+            </a>
+            <a href="pages/herramientas.html" class="btn btn-accent">
+                <i class="fas fa-wrench"></i> Herramientas
+            </a>
         </div>
 
-        <!-- Contenido demostrativo -->
+        <!-- Tarjetas de contenido -->
         <div class="content-grid animate__animated animate__fadeInUp animate__delay-2s">
             <div class="card">
-                <div class="card-img">
-                    <i class="fas fa-compress-alt"></i>
+                <div class="card-img" style="background-color: #FFD700;">
+                    <i class="fas fa-compress-alt monkey-icon"></i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Compresión de Imágenes</h3>
-                    <p class="card-text">Comparativa entre formatos JPG, PNG y WebP con diferentes niveles de compresión.</p>
-                    <a href="pages/imagenes.html" class="btn btn-primary">Ver análisis</a>
+                    <h3 class="card-title">Compresión Monkey</h3>
+                    <p class="card-text">Técnicas especiales para optimizar tus bananas digitales.</p>
+                    <a href="pages/imagenes.html" class="btn btn-primary">
+                        <i class="fas fa-banana"></i> Ver más
+                    </a>
                 </div>
             </div>
             
             <div class="card">
-                <div class="card-img">
-                    <i class="fas fa-vector-square"></i>
+                <div class="card-img" >
+                    <i class="fas fa-vector-square monkey-icon"></i>
                 </div>
                 <div class="card-content">
-                    <h3 class="card-title">Gráficos Vectoriales</h3>
-                    <p class="card-text">Ventajas del formato SVG sobre imágenes rasterizadas en diferentes escenarios.</p>
-                    <a href="pages/vectores.html" class="btn btn-secondary">Explorar</a>
+                    <h3 class="card-title">Vectores en la Jungla</h3>
+                    <p class="card-text">SVG escalables </p>
+                    <a href="pages/vectores.html" class="btn btn-secondary">
+                        <i class="fas fa-tree"></i> Explorar
+                    </a>
                 </div>
             </div>
             
-            <div class="card">
-                <div class="card-img">
-                    <i class="fas fa-file-video"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Optimización de Video</h3>
-                    <p class="card-text">Técnicas para reducir peso manteniendo calidad en formatos MP4 y WebM.</p>
-                    <a href="pages/videos.html" class="btn btn-accent">Ver ejemplos</a>
-                </div>
-            </div>
             
-            <div class="card">
-                <div class="card-img">
-                    <i class="fas fa-tachometer-alt"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Métricas de Rendimiento</h3>
-                    <p class="card-text">Impacto en tiempos de carga con diferentes técnicas de optimización.</p>
-                    <button class="btn btn-primary">Ver datos</button>
-                </div>
-            </div>
+            
+            
         </div>
     </div>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        // Efecto de movimiento de mono al hacer hover en tarjetas
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.monkey-icon');
+                icon.classList.add('animate__animated', 'animate__swing');
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.monkey-icon');
+                icon.classList.remove('animate__animated', 'animate__swing');
+            });
+        });
+    </script>
 </body>
 </html>
