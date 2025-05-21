@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Animaciones - OptiMedia</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Componente Lottie Player -->
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .animation-info-modal {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+
+        /* Estilos específicos para animaciones */
+        .animation-container {
+            width: 100%;
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .lottie-container {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lottie-container dotlottie-player {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Filtros específicos */
+        .filters {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fas fa-arrow-left"></i>
+            <span>Galería de Animaciones</span>
+        </a>
+        <div class="nav-menu">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-sliders-h"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Filtros -->
+        <div class="filters">
+            <button class="filter-btn btn btn-primary active" data-filter="all">Todas</button>
+            <button class="filter-btn btn btn-secondary" data-filter="gif">GIFs</button>
+            <button class="filter-btn btn btn-secondary" data-filter="lottie">Lottie</button>
+            <button class="filter-btn btn btn-secondary" data-filter="optimizadas">Optimizadas</button>
+        </div>
+
+        <!-- Galería de animaciones -->
+        <div class="gallery-grid">
+            <!-- Animación 1 - GIF -->
+            <div class="gallery-item" data-category="gif">
+                <div class="animation-container">
+                    <img src="../images/Gif Originales/1.gif" alt="Animación GIF de ejemplo" class="animation-item">
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">GIF</span>
+                    <span>1.2MB · 480x270px</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Animación tradicional</h3>
+                    <p>GIF original sin optimizar. Tamaño de archivo grande para la calidad.</p>
+                </div>
+            </div>
+
+            <!-- Animación 2 - Lottie -->
+            <div class="gallery-item" data-category="lottie">
+                <div class="lottie-container">
+                    <dotlottie-player
+                        src="https://lottie.host/9e5d4397-18e0-4681-909b-9ce7d7dd8e53/h2nZ5cPDa8.lottie"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay
+                    ></dotlottie-player>
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">Lottie</span>
+                    <span>45KB · Vectorial</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Animación vectorial</h3>
+                    <p>Animación Lottie con peso reducido y calidad superior.</p>
+                </div>
+            </div>
+
+            <!-- Animación 3 - GIF Optimizado -->
+            <div class="gallery-item" data-category="optimizadas">
+                <div class="animation-container">
+                    <img src="../images/Gif Originales/3.gif" alt="Animación WebP optimizada" class="animation-item">
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">WebP</span>
+                    <span>240KB · 480x270px</span>
+                </div>
+                <div class="image-desc">
+                    <h3>GIF optimizado</h3>
+                    <p>Versión WebP de la animación. 80% más liviana que el GIF original.</p>
+                </div>
+            </div>
+
+            <!-- Animación 4 - Lottie 2 -->
+            <div class="gallery-item" data-category="lottie">
+                <div class="lottie-container">
+                    <dotlottie-player
+                        src="https://lottie.host/29683f75-33cd-446c-9cbe-f6e1958a6b83/uyXjxwVhjr.lottie"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay
+                    ></dotlottie-player>
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">Lottie</span>
+                    <span>62KB · Vectorial</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Interfaz animada</h3>
+                    <p>Animación para UI con peso mínimo y escalado perfecto.</p>
+                </div>
+            </div>
+
+            <!-- Animación 5 - GIF -->
+            <div class="gallery-item" data-category="gif">
+                <div class="animation-container">
+                    <img src="../images/Gif Originales/4.gif" alt="Animación GIF de ejemplo 2" class="animation-item">
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">GIF</span>
+                    <span>2.4MB · 640x360px</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Animación compleja</h3>
+                    <p>GIF de alta resolución con tamaño de archivo considerable.</p>
+                </div>
+            </div>
+
+            <!-- Animación 6 - Optimizada -->
+            <div class="gallery-item" data-category="optimizadas">
+                <div class="animation-container">
+                    <img src="../images/Gif Originales/5.gif" alt="Animación MP4 optimizada" class="animation-item" autoplay loop muted playsinline>
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">MP4</span>
+                    <span>380KB · 640x360px</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Video optimizado</h3>
+                    <p>Versión MP4 con compresión eficiente. 85% más liviana que el GIF.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para animación ampliada -->
+    <div id="animationModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content" id="expandedAnimation"></div>
+        <div class="animation-info-modal" id="animationInfo"></div>
+    </div>
+
+    <script>
+        // Filtrado de animaciones
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filtrar animaciones
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            if (item.getAttribute('data-category') === filterValue) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Modal para animación ampliada
+            const modal = document.getElementById('animationModal');
+            const modalContent = document.getElementById("expandedAnimation");
+            const captionText = document.getElementById("animationInfo");
+            const closeBtn = document.getElementsByClassName("close")[0];
+            
+            document.querySelectorAll('.animation-item, .lottie-container dotlottie-player').forEach(anim => {
+                anim.addEventListener('click', function() {
+                    modal.style.display = "block";
+                    
+                    // Limpiar el modal
+                    modalContent.innerHTML = '';
+                    
+                    // Clonar el elemento según su tipo
+                    if (this.tagName === 'IMG') {
+                        const clonedImg = this.cloneNode();
+                        clonedImg.style.maxWidth = '90vw';
+                        clonedImg.style.maxHeight = '90vh';
+                        modalContent.appendChild(clonedImg);
+                    } else if (this.tagName === 'DOTLOTTIE-PLAYER') {
+                        const clonedLottie = this.cloneNode();
+                        clonedLottie.style.width = '80vw';
+                        clonedLottie.style.height = '80vh';
+                        modalContent.appendChild(clonedLottie);
+                    }
+                    
+                    // Mostrar información
+                    const parentItem = this.closest('.gallery-item');
+                    captionText.innerHTML = parentItem.querySelector('h3').textContent + 
+                        '<br>' + parentItem.querySelector('.image-meta').innerText;
+                });
+            });
+            
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                // Pausar cualquier animación en el modal
+                modalContent.querySelector('dotlottie-player')?.pause();
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    modalContent.querySelector('dotlottie-player')?.pause();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Videos - OptiMedia</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .video-info-modal {
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+
+        /* Estilos específicos para videos */
+        .video-container {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-icon {
+            position: absolute;
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+        
+        .video-container:hover .play-icon {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        
+        /* Filtros específicos */
+        .filters {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fas fa-arrow-left"></i>
+            <span>Galería de Videos</span>
+        </a>
+        <div class="nav-menu">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-sliders-h"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Filtros -->
+        <div class="filters">
+            <button class="filter-btn btn btn-primary active" data-filter="all">Todas</button>
+            <button class="filter-btn btn btn-secondary" data-filter="webm">WebM</button>
+            <button class="filter-btn btn btn-secondary" data-filter="mp4">MP4</button>
+            <button class="filter-btn btn btn-secondary" data-filter="optimizados">Optimizados</button>
+        </div>
+
+        <!-- Galería de videos -->
+        <div class="gallery-grid">
+            <!-- Video 1 - WebM -->
+            <div class="gallery-item" data-category="webm optimizados">
+                <div class="video-container">
+                    <video muted loop class="video-item" poster="../images/VideosOptimizados/poster1.jpg">
+                        <source src="../images/VideosOptimizados/1.webm" type="video/webm">
+                    </video>
+                    <i class="fas fa-play play-icon"></i>
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">WebM</span>
+                    <span>1.2MB · 720p</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Video WebM optimizado</h3>
+                    <p>Formato WebM con compresión eficiente. 60% más liviano que el MP4 original.</p>
+                </div>
+            </div>
+
+            <!-- Video 2 - MP4 -->
+            <div class="gallery-item" data-category="mp4">
+                <div class="video-container">
+                    <video muted loop class="video-item" poster="../images/VideosOptimizados/poster2.jpg">
+                        <source src="../images/VideosOptimizados/2.webm" type="video/mp4">
+                    </video>
+                    <i class="fas fa-play play-icon"></i>
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">MP4</span>
+                    <span>3.5MB · 1080p</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Video MP4 original</h3>
+                    <p>Formato MP4 estándar sin optimizar.</p>
+                </div>
+            </div>
+
+            <!-- Video 3 - WebM Optimizado -->
+            <div class="gallery-item" data-category="webm optimizados">
+                <div class="video-container">
+                    <video muted loop class="video-item" poster="../images/VideosOptimizados/poster3.jpg">
+                        <source src="../images/VideosOptimizados/3.webm" type="video/webm">
+                    </video>
+                    <i class="fas fa-play play-icon"></i>
+                </div>
+                <div class="image-meta">
+                    <span class="format-badge">WebM</span>
+                    <span>850KB · 480p</span>
+                </div>
+                <div class="image-desc">
+                    <h3>Animación WebM</h3>
+                    <p>Versión optimizada para web con transparencia alpha.</p>
+                </div>
+            </div>
+
+            
+
+    <!-- Modal para video ampliado -->
+    <div id="videoModal" class="modal">
+        <span class="close">&times;</span>
+        <video controls class="modal-content" id="expandedVideo"></video>
+        <div class="video-info-modal" id="videoInfo"></div>
+    </div>
+
+    <script>
+        // Filtrado de videos
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remover clase active de todos los botones
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Añadir clase active al botón clickeado
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filtrar videos
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all') {
+                            item.style.display = 'block';
+                        } else {
+                            const categories = item.getAttribute('data-category').split(' ');
+                            if (categories.includes(filterValue)) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // Modal para video ampliado
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById("expandedVideo");
+            const captionText = document.getElementById("videoInfo");
+            const closeBtn = document.getElementsByClassName("close")[0];
+            
+            // Manejar clics en videos
+            document.querySelectorAll('.video-container').forEach(container => {
+                container.addEventListener('click', function() {
+                    const video = this.querySelector('video');
+                    modal.style.display = "block";
+                    
+                    // Configurar el video en el modal
+                    modalVideo.innerHTML = '';
+                    const source = video.querySelector('source').cloneNode();
+                    modalVideo.appendChild(source);
+                    modalVideo.load();
+                    modalVideo.play();
+                    
+                    // Mostrar información
+                    const parentItem = this.closest('.gallery-item');
+                    captionText.innerHTML = parentItem.querySelector('h3').textContent + 
+                        '<br>' + parentItem.querySelector('.image-meta').innerText;
+                });
+            });
+            
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                modalVideo.pause();
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    modalVideo.pause();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

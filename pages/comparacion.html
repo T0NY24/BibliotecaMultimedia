@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Imágenes - OptiMedia</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos para la galería */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-img-container {
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .gallery-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .image-info {
+            padding: 1rem;
+        }
+        
+        .image-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .image-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Estilos para el modal de comparación */
+        .comparison-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+        
+        .comparison-header {
+            padding: 1rem;
+            background: var(--dark);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .close {
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .comparison-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        .comparison-column {
+            text-align: center;
+        }
+        
+        .comparison-column h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .comparison-img-container {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+        
+        .comparison-img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .comparison-stats {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-stats p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .conclusion {
+            padding: 1rem;
+            background: rgba(106, 17, 203, 0.1);
+            border-left: 4px solid var(--primary);
+            margin-top: 1rem;
+            grid-column: span 2;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .conclusion {
+                grid-column: span 1;
+            }
+            
+            .comparison-img-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <i class="fas fa-arrow-left"></i>
+            <span>Comparación de Imágenes</span>
+        </a>
+        <div class="nav-menu">
+            <i class="fas fa-info-circle"></i>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Comparación de Imágenes</h1>
+        <p>Haz clic en cualquier imagen para ver la comparación entre la versión optimizada y la original</p>
+        
+        <!-- Galería de imágenes optimizadas -->
+        <div class="gallery-grid">
+            <!-- Imagen 1 -->
+            <div class="gallery-item" data-original="../images/ImagesOriginales/capucchino.jpg" data-optimized="../images/ImagenesOptimizadas/capucchino.webp">
+                <div class="gallery-img-container">
+                    <img src="../images/ImagenesOptimizadas/capucchino.webp" alt="Capuchino optimizado">
+                </div>
+                <div class="image-info">
+                    <h3>Capuchino</h3>
+                    <div class="image-meta">
+                        <span>WebP</span>
+                        <span>85KB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Imagen 2 -->
+            <div class="gallery-item" data-original="../images/ImagesOriginales/naturaleza.jpg" data-optimized="../images/ImagenesOptimizadas/naturaleza.webp">
+                <div class="gallery-img-container">
+                    <img src="../images/ImagenesOptimizadas/naturaleza.webp" alt="Paisaje optimizado">
+                </div>
+                <div class="image-info">
+                    <h3>Paisaje</h3>
+                    <div class="image-meta">
+                        <span>AVIF</span>
+                        <span>120KB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Imagen 3 -->
+            <div class="gallery-item" data-original="../images/ImagesOriginales/mono.jpg" data-optimized="../images/ImagenesOptimizadas/mono.avif">
+                <div class="gallery-img-container">
+                    <img src="../images/ImagenesOptimizadas/mono.avif" alt="Retrato optimizado">
+                </div>
+                <div class="image-info">
+                    <h3>Retrato</h3>
+                    <div class="image-meta">
+                        <span>WebP</span>
+                        <span>95KB</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Imagen 4 -->
+            <div class="gallery-item" data-original="../images/ImagesOriginales/monoSentado.jpg" data-optimized="../images/ImagenesOptimizadas/monoSentado.webp">
+                <div class="gallery-img-container">
+                    <img src="../images/ImagenesOptimizadas/monoSentado.webp" alt="Producto optimizado">
+                </div>
+                <div class="image-info">
+                    <h3>Producto</h3>
+                    <div class="image-meta">
+                        <span>WebP</span>
+                        <span>110KB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de comparación -->
+    <div id="comparisonModal" class="comparison-modal">
+        <div class="modal-content">
+            <div class="comparison-header">
+                <h2 id="comparisonTitle">Comparación de Imágenes</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="comparison-body">
+                <div class="comparison-column">
+                    <h3>Original</h3>
+                    <div class="comparison-img-container">
+                        <img id="originalImage" src="" alt="Imagen original">
+                    </div>
+                    <div class="comparison-stats" id="originalStats">
+                        <!-- Datos se llenarán con JavaScript -->
+                    </div>
+                </div>
+                <div class="comparison-column">
+                    <h3>Optimizada</h3>
+                    <div class="comparison-img-container">
+                        <img id="optimizedImage" src="" alt="Imagen optimizada">
+                    </div>
+                    <div class="comparison-stats" id="optimizedStats">
+                        <!-- Datos se llenarán con JavaScript -->
+                    </div>
+                </div>
+                <div class="conclusion" id="comparisonConclusion">
+                    <!-- Conclusión se llenará con JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Datos de las imágenes actualizados para tus archivos
+    const imageData = {
+        "capucchino": {
+            title: "Café Capuchino",
+            original: {
+                format: "JPG",
+                size: "237KB",
+                dimensions: "3749x4944px"
+            },
+            optimized: {
+                format: "WebP",
+                size: "85KB",
+                dimensions: "3749x4944px"
+            },
+            reduction: "64%",
+            conclusion: "El formato WebP mantiene una calidad visual similar con una reducción del 64% en tamaño de archivo."
+        },
+        "naturaleza": {
+            title: "Paisaje Natural",
+            original: {
+                format: "JPG",
+                size: "2.5MB",
+                dimensions: "4000x6000px"
+            },
+            optimized: {
+                format: "WebP",
+                size: "232KB",
+                dimensions: "4000x6000px"
+            },
+            reduction: "91%",
+            conclusion: "WebP ofrece excelente compresión para paisajes manteniendo detalles importantes."
+        },
+        "mono": {
+            title: "Retrato de Mono",
+            original: {
+                format: "JPG",
+                size: "1.8MB",
+                dimensions: "5473x3649px"
+            },
+            optimized: {
+                format: "AVIF",
+                size: "122KB",
+                dimensions: "5473x3649px"
+            },
+            reduction: "93%",
+            conclusion: "AVIF preserva excelentemente los detalles de pelaje con gran reducción de peso."
+        },
+        "monosentado": {  <!-- Cambiado a minúsculas para coincidir -->
+            title: "Mono Sentado",
+            original: {
+                format: "JPG",
+                size: "2.1MB",
+                dimensions: "3846x5769px"
+            },
+            optimized: {
+                format: "WebP",
+                size: "131KB",
+                dimensions: "3846x5769px"
+            },
+            reduction: "94%",
+            conclusion: "WebP ofrece compresión excepcional para fotografías de animales."
+        }
+    };
+
+    // Función para normalizar nombres de archivo
+    function normalizeImageName(filename) {
+        return filename.toLowerCase()
+                     .replace(/\..+$/, '')  // Elimina la extensión
+                     .replace(/[^a-z0-9]/, '');  // Elimina caracteres especiales
+    }
+
+    // Abrir modal de comparación al hacer clic en una imagen
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const originalSrc = this.getAttribute('data-original');
+            const optimizedSrc = this.getAttribute('data-optimized');
+            
+            // Extraer y normalizar el nombre del archivo
+            const optimizedPathParts = optimizedSrc.split('/');
+            const optimizedFilename = optimizedPathParts[optimizedPathParts.length - 1];
+            const imageName = normalizeImageName(optimizedFilename);
+            
+            console.log("Nombre de imagen normalizado:", imageName); // Para depuración
+            
+            const data = imageData[imageName];
+            
+            if (!data) {
+                console.error("No se encontraron datos para:", imageName);
+                alert(`No se encontraron datos de comparación para: ${imageName}`);
+                return;
+            }
+            
+            // Configurar el modal
+            document.getElementById('comparisonTitle').textContent = `Comparación: ${data.title}`;
+            document.getElementById('originalImage').src = originalSrc;
+            document.getElementById('optimizedImage').src = optimizedSrc;
+            
+            // Llenar estadísticas
+            document.getElementById('originalStats').innerHTML = `
+                <p><strong>Formato:</strong> ${data.original.format}</p>
+                <p><strong>Tamaño:</strong> ${data.original.size}</p>
+                <p><strong>Dimensiones:</strong> ${data.original.dimensions}</p>
+            `;
+            
+            document.getElementById('optimizedStats').innerHTML = `
+                <p><strong>Formato:</strong> ${data.optimized.format}</p>
+                <p><strong>Tamaño:</strong> ${data.optimized.size}</p>
+                <p><strong>Dimensiones:</strong> ${data.optimized.dimensions}</p>
+                <p><strong>Reducción:</strong> ${data.reduction}</p>
+            `;
+            
+            document.getElementById('comparisonConclusion').innerHTML = `
+                <p><strong>Resultado:</strong> ${data.conclusion}</p>
+            `;
+            
+            // Mostrar modal
+            document.getElementById('comparisonModal').style.display = 'block';
+        });
+    });
+
+    // Cerrar modal
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('comparisonModal').style.display = 'none';
+    });
+
+    // Cerrar al hacer clic fuera del modal
+    window.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('comparisonModal')) {
+            document.getElementById('comparisonModal').style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
